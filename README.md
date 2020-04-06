@@ -27,7 +27,7 @@ Therefore, to find the optimal center node, iterative loop is required. This sea
 
 <div align=center><img width="156" height="51" src="figures/choosing criteria.png"/></div>
 
-where d(P, P<sub>i</sub>) is the distance between node i position and current node position, w<sub>i</sub> is the weighing parameter of node i (the energy of storage capacitor).
+where d(P, P<sub>i</sub>) is the distance between node i position and current node position, w<sub>i</sub> is the weighing parameter of node i (the energy of storage capacitor). This is because the altitude of UAV will affect the number of charging nodes.
 
 Then for larger planes, multiple clusters will be formed like following figure [3]:
 
@@ -40,26 +40,28 @@ The method is to find the shortest path between two nodes in weighting system G 
 
 1. starting node a = 0, b = 3, c = 2, V<sub>1</sub> = {a}, V<sub>2</sub> = {b, c, d, e, f}
 
-<div align=center><img width="380" height="200" src="figures/Dji_0.png"/></div>
+<div align=center><img width="380" height="200" src="figures/Dij_0.png"/></div>
 
 2. starting node c, b = 2+5 = 7 > 3 (keep 3 then), e = 2+4 = 6, V<sub>1</sub> = {a, c}, V<sub>2</sub> = {b, d, e, f}
 
-<div align=center><img width="380" height="200" src="figures/Dji_1.png"/></div>
+<div align=center><img width="380" height="200" src="figures/Dij_1.png"/></div>
 
 3. starting node b, d = 3+6 = 9 , e = 3+3 = 6, V<sub>1</sub> = {a, c, b}, V<sub>2</sub> = {d, e, f}
 
-<div align=center><img width="380" height="200" src="figures/Dji_2.png"/></div>
+<div align=center><img width="380" height="200" src="figures/Dij_2.png"/></div>
 
 4. starting node e, d = 6+5 = 11 > 9 (keep 9 then), f = 6+7 = 13, V<sub>1</sub> = {a, c, b, e}, V<sub>2</sub> = {d, f}
 
-<div align=center><img width="380" height="200" src="figures/Dji_3.png"/></div>
+<div align=center><img width="380" height="200" src="figures/Dij_3.png"/></div>
 
 5. starting node d, f = 9+6 = 15 > 13 (keep 13 then), e = 9+5 = 14 > 13 (keep 13 then), V<sub>1</sub> = {a, c, b, e, d}, V<sub>2</sub> = {f}
 
-<div align=center><img width="380" height="200" src="figures/Dji_4.png"/></div>
+<div align=center><img width="380" height="200" src="figures/Dij_4.png"/></div>
 
 Then we can get shortest path (a, c, e, f) or (a, b, e, f) and total length is 13.
 
+## Implementation 
+This algorithm will be realized through C++. See [Dij_algorithm](Dij_algorithm.cpp) for more information.
 
 # Reference 
 [1] D. E. Boyle, S. W. Wright, M. E. Kiziroglou, A. Y. S. Pandiyan, and E. M.
